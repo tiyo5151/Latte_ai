@@ -1,9 +1,9 @@
 
 import { expect, test } from 'vitest';
-import { createUserClient, noCookieClient } from './apiClient';
-import { DELETE, GET, POST } from './utils';
+import { noCookieClient } from './apiClient';
+import { GET, POST } from './utils';
 
-test(GET(noCookieClient), async () => {
+test(GET(noCookieClient.novel), async () => {
 
   const res = await noCookieClient.novel.$get();
   expect(res).toEqual('Hello');
@@ -11,7 +11,7 @@ test(GET(noCookieClient), async () => {
 
 test(POST(noCookieClient.novel), async () => {
   const aozoraUrl = 'abc';
-  const res = await noCookieClient.novel.post({ body: { aozoraUrl } });
+  const res = await noCookieClient.novel.$post({ body: { aozoraUrl } });
 
-  expect(res ).toEqual(aozoraUrl);
+  expect(res).toEqual(aozoraUrl);
 });
